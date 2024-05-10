@@ -2,6 +2,7 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.9.23'
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.9.23'
     id 'io.ktor.plugin' version '2.3.10'
+    id 'application'
 }
 
 group "com.fitnessServIB"
@@ -13,6 +14,16 @@ applicationDefaultJvmArgs = ["-Dio.ktor.development=$isDevelopment"]
 
 repositories {
     mavenCentral()
+}
+
+application {
+    mainClass = "com.example.ApplicationKt"
+}
+
+ktor {
+    docker {
+        jreVersion = JavaVersion.VERSION_20 // Установите версию Java, соответствующую вашему проекту
+    }
 }
 
 dependencies {
@@ -42,4 +53,6 @@ dependencies {
     implementation "commons-codec:commons-codec:$commons_codec_version"
     testImplementation "io.ktor:ktor-server-tests-jvm"
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+    implementation "io.ktor:ktor-server-core"
+    implementation "io.ktor:ktor-server-netty"
 }
