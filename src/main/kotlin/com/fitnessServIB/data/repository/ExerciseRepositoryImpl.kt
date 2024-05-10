@@ -21,6 +21,7 @@ class ExerciseRepositoryImpl : ExerciseRepository {
             ExerciseTable.insert { table ->
                 table[name] = exercise.name
                 table[description] = exercise.description
+                table[instruction] = exercise.instruction
                 table[medicalContraindications] = exercise.medicalContraindications
                 table[urlGif] = exercise.urlGif
             }
@@ -32,6 +33,7 @@ class ExerciseRepositoryImpl : ExerciseRepository {
             ExerciseTable.update({ ExerciseTable.id eq exercise.id }) { table ->
                 table[name] = exercise.name
                 table[description] = exercise.description
+                table[instruction] = exercise.instruction
                 table[medicalContraindications] = exercise.medicalContraindications
                 table[urlGif] = exercise.urlGif
             }
@@ -49,6 +51,7 @@ class ExerciseRepositoryImpl : ExerciseRepository {
             id = row[ExerciseTable.id],
             name = row[ExerciseTable.name],
             description = row[ExerciseTable.description],
+            instruction = row[ExerciseTable.instruction],
             medicalContraindications = row[ExerciseTable.medicalContraindications],
             urlGif = row[ExerciseTable.urlGif]
         )

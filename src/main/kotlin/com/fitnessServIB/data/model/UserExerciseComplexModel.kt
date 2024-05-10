@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class UserExerciseComplexModel(
-    val userId: String,
+    val userId: Int,
     val exerciseComplexId: Int
 )

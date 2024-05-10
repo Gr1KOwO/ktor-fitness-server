@@ -2,7 +2,6 @@ package com.fitnessServIB.domain.usecase
 
 import com.fitnessServIB.data.model.ExerciseTypeModel
 import com.fitnessServIB.domain.repository.ExerciseTypeRepository
-
 class ExerciseTypeUseCase(private val repository: ExerciseTypeRepository) {
     suspend fun getExerciseType(id: Int): ExerciseTypeModel? = repository.getExerciseType(id)
 

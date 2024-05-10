@@ -8,7 +8,7 @@ import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 
 class UserExerciseComplexRepositoryImpl : UserExerciseComplexRepository {
-    override suspend fun getUserExerciseComplexByUserId(userId: String): List<UserExerciseComplexModel> = dbQuery {
+    override suspend fun getUserExerciseComplexByUserId(userId: Int): List<UserExerciseComplexModel> = dbQuery {
         UserExerciseComplexTable.select { UserExerciseComplexTable.userId.eq(userId) }
             .mapNotNull { rowToUserExerciseComplex(it) }
     }
@@ -28,7 +28,7 @@ class UserExerciseComplexRepositoryImpl : UserExerciseComplexRepository {
         }
     }
 
-    override suspend fun deleteUserExerciseComplex(userId: String, exerciseComplexId: Int) {
+    override suspend fun deleteUserExerciseComplex(userId: Int, exerciseComplexId: Int) {
         dbQuery {
             UserExerciseComplexTable.deleteWhere {
                 (UserExerciseComplexTable.userId eq userId) and

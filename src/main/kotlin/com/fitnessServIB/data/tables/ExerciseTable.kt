@@ -8,5 +8,6 @@ object ExerciseTable: Table() {
     val urlGif = text("urlGif").nullable()
     val description = text("description")
     val medicalContraindications = text("medicalContraindications")
+    val instruction = text("instruction")
     override val primaryKey = PrimaryKey(id)
 }

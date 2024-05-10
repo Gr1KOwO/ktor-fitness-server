@@ -4,6 +4,8 @@ import com.fitnessServIB.data.model.FitnessLevelExerciseComplexModel
 import com.fitnessServIB.domain.repository.FitnessLevelExerciseComplexRepository
 
 class FitnessLevelExerciseComplexUseCase (private val repository: FitnessLevelExerciseComplexRepository) {
+
+    suspend fun getAllFitnessLevelExerciseComplex():List<FitnessLevelExerciseComplexModel> = repository.getAllFitnessLevelExerciseComplex()
     suspend fun getExerciseComplexesByFitnessLevel(fitnessLevelId: Int): List<FitnessLevelExerciseComplexModel> {
         return repository.getExerciseComplexesByFitnessLevelId(fitnessLevelId)
     }

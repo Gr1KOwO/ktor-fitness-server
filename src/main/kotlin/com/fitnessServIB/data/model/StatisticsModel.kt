@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 data class StatisticsModel(
     val idStatistic:Int,
     @Contextual val date: LocalDate,
-    val userEmail: String,
+    val userId: Int,
     val caloriesSpent: Float,
     val caloriesConsumed: Float,
 )

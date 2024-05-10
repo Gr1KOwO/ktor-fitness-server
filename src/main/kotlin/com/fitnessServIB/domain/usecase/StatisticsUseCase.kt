@@ -6,12 +6,12 @@ import kotlinx.datetime.LocalDate
 
 
 class StatisticsUseCase(private val statisticsRepository: StatisticsRepository) {
-    suspend fun getStatisticsByUserAndDate(userEmail: String, date: LocalDate): StatisticsModel? {
-        return statisticsRepository.getStatisticsByUserAndDate(userEmail, date)
+    suspend fun getStatisticsByUserAndDate(userId: Int, date: LocalDate): StatisticsModel? {
+        return statisticsRepository.getStatisticsByUserAndDate(userId, date)
     }
 
-    suspend fun getAllStatisticsForUser(userEmail: String): List<StatisticsModel> {
-        return statisticsRepository.getAllStatisticsForUser(userEmail)
+    suspend fun getAllStatisticsForUser(userId: Int): List<StatisticsModel> {
+        return statisticsRepository.getAllStatisticsForUser(userId)
     }
 
     suspend fun createStatistics(statistics: StatisticsModel) {

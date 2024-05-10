@@ -22,7 +22,7 @@ class JwtService {
         withSubject("FitAppAuth").
         withIssuer(issuer).
         withClaim("email",user.email).
-        withExpiresAt(LocalDateTime.now().plusDays(2).toInstant(ZoneOffset.UTC)).
+        withExpiresAt(LocalDateTime.now().plusDays(30).toInstant(ZoneOffset.UTC)).
         sign(algorithm)
     }
     fun getVerifier():JWTVerifier = verifier

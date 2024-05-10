@@ -4,7 +4,7 @@ import com.fitnessServIB.data.model.UserCustomWorkoutsModel
 import com.fitnessServIB.domain.repository.UserCustomWorkoutsRepository
 
 class UserCustomWorkoutsUseCase (private val repository: UserCustomWorkoutsRepository) {
-    suspend fun getUserCustomWorkoutsByUserId(userId: String): List<UserCustomWorkoutsModel> {
+    suspend fun getUserCustomWorkoutsByUserId(userId: Int): List<UserCustomWorkoutsModel> {
         return repository.getUserCustomWorkoutsByUserId(userId)
     }
 

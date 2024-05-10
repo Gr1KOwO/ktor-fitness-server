@@ -7,14 +7,10 @@ import io.ktor.server.application.*
 import io.ktor.server.auth.*
 import io.ktor.server.auth.jwt.*
 
-fun Application.configureSecurity() {
-    val jwtServices = JwtService()
-    val repository = UserRepositoryImpl()
-    val userUseCase = UserUseCase(repository,jwtServices)
-
+fun Application.configureSecurity(userUseCase:UserUseCase) {
     authentication {
         jwt ("jwt"){
-            verifier(jwtServices.getVerifier())
+            verifier(userUseCase.getGwtVerifier())
             realm = "Service Server"
             validate {
                 val payload = it.payload

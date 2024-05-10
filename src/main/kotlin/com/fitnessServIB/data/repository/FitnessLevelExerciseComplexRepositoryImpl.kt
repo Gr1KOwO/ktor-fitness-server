@@ -8,6 +8,12 @@ import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 
 class FitnessLevelExerciseComplexRepositoryImpl : FitnessLevelExerciseComplexRepository {
+    override suspend fun getAllFitnessLevelExerciseComplex(): List<FitnessLevelExerciseComplexModel> =
+        dbQuery {
+            FitnessLevelExerciseComplexTable.selectAll().mapNotNull { rowToFitnessLevelExerciseComplex(it) }
+        }
+
+
     override suspend fun getExerciseComplexesByFitnessLevelId(fitnessLevelId: Int): List<FitnessLevelExerciseComplexModel> = dbQuery {
         FitnessLevelExerciseComplexTable.select { FitnessLevelExerciseComplexTable.fitnessLevelId.eq(fitnessLevelId) }
             .mapNotNull { rowToFitnessLevelExerciseComplex(it) }

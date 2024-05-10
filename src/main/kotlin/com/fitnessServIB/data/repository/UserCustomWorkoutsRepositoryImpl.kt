@@ -8,7 +8,7 @@ import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 
 class UserCustomWorkoutsRepositoryImpl : UserCustomWorkoutsRepository {
-    override suspend fun getUserCustomWorkoutsByUserId(userId: String): List<UserCustomWorkoutsModel> = dbQuery {
+    override suspend fun getUserCustomWorkoutsByUserId(userId: Int): List<UserCustomWorkoutsModel> = dbQuery {
         UserCustomWorkoutsTable.select { UserCustomWorkoutsTable.userId.eq(userId) }
             .mapNotNull { rowToUserCustomWorkouts(it) }
     }

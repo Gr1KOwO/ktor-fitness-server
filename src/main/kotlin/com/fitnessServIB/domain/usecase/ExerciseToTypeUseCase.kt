@@ -6,10 +6,10 @@ import com.fitnessServIB.domain.repository.ExerciseToTypeRepository
 class ExerciseToTypeUseCase (private val repository: ExerciseToTypeRepository) {
     suspend fun getAllExerciseToTypes(): List<ExerciseToTypeModel> = repository.getAllExerciseToTypes()
 
-    suspend fun getExerciseToTypeByExerciseId(exerciseId: Int): List<ExerciseToTypeModel> =
+    suspend fun getExerciseTypeByExerciseId(exerciseId: Int): List<ExerciseToTypeModel> =
         repository.getExerciseToTypeByExerciseId(exerciseId)
 
-    suspend fun getExerciseToTypeByExerciseTypeId(exerciseTypeId: Int): List<ExerciseToTypeModel> =
+    suspend fun getExerciseByExerciseTypeId(exerciseTypeId: Int): List<ExerciseToTypeModel> =
         repository.getExerciseToTypeByExerciseTypeId(exerciseTypeId)
 
     suspend fun createExerciseToType(exerciseToType: ExerciseToTypeModel) =

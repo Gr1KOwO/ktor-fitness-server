@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 data class ConsumedFoodModel(
     val id: Int,
     @Contextual val date: LocalDate,
-    val userEmail: String,
+    val userId: Int,
     val foodId: Int?,
     val dishId: Int?,
     val quantity: Int,

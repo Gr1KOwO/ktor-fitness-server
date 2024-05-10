@@ -9,16 +9,23 @@ import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.springframework.security.crypto.bcrypt.BCrypt
 
 class UserRepositoryImpl:UserRepository {
-    override suspend fun getUser(email: String): UserModel? {
+    override suspend fun getUserById(userId: Int): UserModel? {
+        return dbQuery{
+            UserTable.select{ UserTable.userId.eq(userId)}.map { rowToUser(it)  }.singleOrNull()
+        }
+    }
+
+    override suspend fun getUserByEmail(email: String): UserModel? {
         return dbQuery{
             UserTable.select{ UserTable.email.eq(email)}.map { rowToUser(it)  }.singleOrNull()
         }
     }
+
     override suspend fun insertUser(user: UserModel) {
          dbQuery {
             UserTable.insert { table->
                 table[email] = user.email
-                table[password] = BCrypt.hashpw(user.password, BCrypt.gensalt())
+                table[password] = user.password
                 table[sex] = user.sex
                 table[weight] = user.weight
                 table[height]= user.height
@@ -29,7 +36,7 @@ class UserRepositoryImpl:UserRepository {
     }
     override suspend fun updateUser(user: UserModel) {
         dbQuery {
-            UserTable.update({ UserTable.email.eq(user.email) }) { table->
+            UserTable.update({ UserTable.userId.eq(user.userId) }) { table->
                 table[password] = user.password
                 table[sex] = user.sex
                 table[weight] = user.weight
@@ -42,6 +49,7 @@ class UserRepositoryImpl:UserRepository {
     private fun rowToUser(row: ResultRow?):UserModel?{
         if (row==null){return null}
         return UserModel(
+            userId = row[UserTable.userId],
             email = row[UserTable.email],
             password = row[UserTable.password],
             fullName = row[UserTable.fullName],
@@ -51,9 +59,9 @@ class UserRepositoryImpl:UserRepository {
             age = row[UserTable.age],
         )
     }
-    override suspend fun deleteUser(email: String) {
+    override suspend fun deleteUser(userId: Int) {
         dbQuery {
-            UserTable.deleteWhere { UserTable.email eq email }
+            UserTable.deleteWhere { UserTable.userId eq userId }
         }
     }
 }
